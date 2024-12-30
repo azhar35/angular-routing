@@ -7,6 +7,7 @@ import { LessonDetailComponent } from "./lesson/lesson-detail.component";
 import { LessonsListComponent } from "./lessons-list/lessons-list.component";
 import { LessonsResolver } from "./services/lessons.resolver";
 import { LessonDetailResolver } from "./services/lesson-detail.resolver";
+import { AuthGuard } from "../services/auth.guard";
 
 // http://localhost:4200/courses/angular-router-course/lessons/17
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   {
     path: ":courseUrl",
     component: CourseComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: "",
@@ -43,6 +45,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [CourseResolver, LessonsResolver, LessonDetailResolver],
+  providers: [CourseResolver, LessonsResolver, LessonDetailResolver, AuthGuard],
 })
 export class CoursesRoutingModule {}
