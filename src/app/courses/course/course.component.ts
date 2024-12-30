@@ -15,8 +15,14 @@ export class CourseComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {}
 
+  // http://localhost:4200/courses/angular-router-course?couponCode=NEW_YEAR&param2=paramv2
+
   ngOnInit() {
     this.course = this.route.snapshot.data["course"];
+
+    this.couponCode = this.route.snapshot.queryParamMap.get("couponCode");
+
+    // observable --> this.route.queryParamMap;
   }
 
   confirmExit() {
